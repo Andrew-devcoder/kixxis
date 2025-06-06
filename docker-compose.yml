@@ -1,0 +1,42 @@
+services:
+    kixxis-db:
+        image: postgres:15
+        container_name: kixxis-db
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: kixxis
+            POSTGRES_PASSWORD: secret123
+            POSTGRES_DB: kixxisdb
+        volumes:
+            - kixxis-db-data:/var/lib/postgresql/data
+        networks:
+            - kixxis-internal
+
+    kixxis:
+        container_name: kixxis
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - '3000:3000'
+        env_file:
+            - .env
+        restart: unless-stopped
+        depends_on:
+            - kixxis-db
+        volumes:
+            - ./public/uploads:/app/public/uploads
+        networks:
+            - kixxis-internal
+            - reverse-proxy
+
+volumes:
+    kixxis-db-data:
+
+networks:
+    kixxis-internal:
+        driver: bridge
+        name: kixxis-internal
+    reverse-proxy:
+        external: true
+        name: reverse-proxy

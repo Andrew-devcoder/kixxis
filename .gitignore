@@ -1,0 +1,12 @@
+# .gitignore
+.env
+.env.*
+node_modules/
+dist/
+public/
+coverage/
+.vscode/
+.DS_Store
+*.log
+*.tmp
+*.sqls

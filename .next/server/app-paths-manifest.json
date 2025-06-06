@@ -1,0 +1,9 @@
+{
+  "/api/admin/cocktails/route": "app/api/admin/cocktails/route.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/page": "app/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/admin/cocktails/page": "app/admin/cocktails/page.js",
+  "/admin/cocktails/create/page": "app/admin/cocktails/create/page.js"
+}
