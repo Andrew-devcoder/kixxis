@@ -3,6 +3,7 @@ import path from 'path';
 import { writeFile, mkdir } from 'fs/promises';
 import { randomUUID } from 'crypto';
 import fs from 'fs';
+import { optimizeImage } from '@/services/image.service';
 
 export const config = {
 	api: {
@@ -22,8 +23,9 @@ export async function POST(req: NextRequest) {
 		const bytes = await file.arrayBuffer();
 		const buffer = Buffer.from(bytes);
 
-		const ext = file.name.split('.').pop() || 'webp';
-		const filename = `${randomUUID()}.${ext}`;
+		const optImg = await optimizeImage(buffer);
+
+		const filename = `${randomUUID()}.webp`;
 
 		const uploadDir = path.join(process.cwd(), 'public/uploads');
 		if (!fs.existsSync(uploadDir)) {
@@ -31,7 +33,7 @@ export async function POST(req: NextRequest) {
 		}
 
 		const filePath = path.join(uploadDir, filename);
-		await writeFile(filePath, buffer);
+		await writeFile(filePath, optImg);
 
 		return NextResponse.json({ filename });
 	} catch (err: any) {

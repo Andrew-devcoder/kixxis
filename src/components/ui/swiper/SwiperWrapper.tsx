@@ -38,9 +38,9 @@ export default function SwiperWrapper() {
 			// onSwiper={(swiper) => console.log(swiper)}
 		>
 			{products.map((item) => (
-				<SwiperSlide key={item.id} className="flex justify-center m-0">
-					<div className="flex items-center justify-center">
-						<div className="max-w-sm min-w-2xs w-full cursor-pointer rounded overflow-hidden">
+				<SwiperSlide key={item.id} className="flex justify-center m-0 ">
+					<div className="flex items-center justify-center ">
+						<div className="max-w-sm min-w-2xs w-full cursor-pointer rounded overflow-hidden bg-white/10 backdrop-blur-sm shadow-lg">
 							<img
 								width="64"
 								height="64"
@@ -49,13 +49,13 @@ export default function SwiperWrapper() {
 								alt=" TODO add this to create and edit page "
 								className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
 							/>
-							<div className="flex justify-between items-end">
+							<div className="flex justify-between items-end p-4 text-shadow-lg">
 								<div>
-									<h3 className="mt-4 text-md text-gray-700">{item.name}</h3>
+									<h3 className="mt-4 text-md text-white">{item.name}</h3>
 									{item.description && (
-										<h3 className="mt-2 text-sm text-gray-700">{item.description}</h3>
+										<h3 className="mt-2 text-sm text-white">{item.description}</h3>
 									)}
-									<p className="mt-1 text-lg font-medium text-gray-900">{item.price}</p>
+									<p className="mt-1 text-lg font-medium text-white">{item.price} &euro;</p>
 								</div>
 
 								<div>

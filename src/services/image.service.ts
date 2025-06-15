@@ -1,3 +1,9 @@
+import sharp from 'sharp';
+
+export async function optimizeImage(file: Buffer): Promise<Buffer> {
+	return sharp(file).resize({ width: 1200 }).webp({ quality: 80 }).toBuffer();
+}
+
 export async function uploadImage(file: File): Promise<string> {
 	const formData = new FormData();
 	formData.append('image', file);
